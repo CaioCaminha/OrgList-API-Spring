@@ -1,0 +1,14 @@
+package caio.caminha.orglist;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+
+@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
+public class OrglistApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(OrglistApplication.class, args);
+	}
+
+}
