@@ -1,9 +1,21 @@
 package caio.caminha.orglist.controllers.Dto;
 
+import org.springframework.data.domain.Page;
+
+import caio.caminha.orglist.models.Usuario;
+
 public class UsuarioDto {
 	private Long id;
 	private String name;
 	private String email;
+	
+	public UsuarioDto() {}
+	
+	public UsuarioDto(Usuario user) {
+		this.id = user.getId();
+		this.name = user.getName();
+		this.email = user.getEmail();
+	}
 	
 	public Long getId() {
 		return id;
@@ -24,5 +36,7 @@ public class UsuarioDto {
 		this.email = email;
 	}
 	
-	
+	public static Page<UsuarioDto> convert(Page<Usuario> user){
+		return user.map(UsuarioDto::new);
+	}
 }

@@ -25,6 +25,14 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario")
 	private List<Task> task;
 	
+	public Usuario() {}
+	
+	public Usuario(String name, String email, String password) {
+		this.name = name;
+		this.email = email;
+		this.password = password;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -50,5 +58,9 @@ public class Usuario {
 		this.password = password;
 	}
 	
+	@Override
+	public String toString() {
+		return this.name;
+	}
 	
 }

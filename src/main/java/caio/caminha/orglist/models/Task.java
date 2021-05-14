@@ -22,7 +22,15 @@ public class Task {
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
+	
+	public Task() {}
 
+	public Task(String title, String description, Usuario usuario) {
+		this.title = title;
+		this.description = description;
+		this.usuario = usuario;
+	}
+	
 	public Long getId() {
 		return id;
 	}
