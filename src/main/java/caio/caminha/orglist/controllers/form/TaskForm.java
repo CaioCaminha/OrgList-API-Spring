@@ -2,6 +2,7 @@ package caio.caminha.orglist.controllers.form;
 
 import caio.caminha.orglist.models.Task;
 import caio.caminha.orglist.models.Usuario;
+import caio.caminha.orglist.repositories.TaskRepository;
 import caio.caminha.orglist.repositories.UsuarioRepository;
 
 public class TaskForm {
@@ -35,6 +36,14 @@ public class TaskForm {
 	public Task convert(UsuarioRepository usuarioRepository) {
 		Usuario user = usuarioRepository.findByName(this.usuario);
 		return new Task(this.title, this.description, user);
+	}
+	
+	public Task update(Long id, TaskRepository taskRepository) {
+		Task task = taskRepository.getOne(id);
+		task.setTitle(this.title);
+		task.setDescription(this.description);
+		taskRepository.save(task);
+		return task;
 	}
 	
 }
