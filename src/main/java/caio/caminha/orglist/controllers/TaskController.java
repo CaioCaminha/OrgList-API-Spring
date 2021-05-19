@@ -34,7 +34,7 @@ import caio.caminha.orglist.repositories.UsuarioRepository;
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
-	
+	//injeção de dependencias
 	@Autowired
 	private TaskRepository taskRepository;
 	
