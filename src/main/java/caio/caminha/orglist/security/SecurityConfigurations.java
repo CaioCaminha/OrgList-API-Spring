@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import caio.caminha.orglist.repositories.UsuarioRepository;
 
@@ -52,7 +53,7 @@ public class SecurityConfigurations  extends WebSecurityConfigurerAdapter{
 		.anyRequest().authenticated()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		.and().addFilterBefore(null, null);
+		.and().addFilterBefore(new AutenticationTokenFilter(tokenService, usuarioRepository), UsernamePasswordAuthenticationFilter.class);
 	}
 	@Override
 	public void configure(WebSecurity web) throws Exception {
