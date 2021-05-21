@@ -25,6 +25,8 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
+	//O DTO DEVE SER RECEBIDO NO CORPO DA REQUISIÇÃO!!!!!!!!!!!!!
+	
 	@PostMapping
 	public ResponseEntity<UsuarioDto> createUser(@RequestBody @Valid UsuarioForm usuarioForm, UriComponentsBuilder builder){
 		Usuario user = usuarioForm.convert();
@@ -32,6 +34,12 @@ public class UsuarioController {
 		
 		URI uri = builder.path("/users/{id}").buildAndExpand(user.getId()).toUri();
 		return ResponseEntity.created(uri).body(new UsuarioDto(user));
+	}
 	
+	@PutMapping
+	public ResponseEntity<UsuarioDto> updateUser(@RequestBody UsuarioForm usuarioForm){
+		Usuario user = usuarioForm.convert();
+		this.usuarioRepository.save(user);
+		return ResponseEntity.ok(new UsuarioDto(user));
 	}
 }
