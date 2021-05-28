@@ -8,4 +8,5 @@ import caio.caminha.orglist.models.Task;
 
 public interface TaskRepository extends JpaRepository<Task, Long>{
 	Page<Task> findByUsuarioName(String name, Pageable page);
+	
 }

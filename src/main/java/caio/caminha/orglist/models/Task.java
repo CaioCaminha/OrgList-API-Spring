@@ -10,8 +10,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "task")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Task {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
